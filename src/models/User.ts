@@ -1,8 +1,14 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, PrimaryKey, AutoIncrement, HasMany } from 'sequelize-typescript';
 import { UserRole } from '../constants/roles';
+import Greenhouse from './Greenhouse';
 
 @Table
 export default class User extends Model {
+  @PrimaryKey
+  @AutoIncrement
+  @Column
+  id!: number;
+
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -22,4 +28,7 @@ export default class User extends Model {
     defaultValue: UserRole.Farmer,
   })
   role!: UserRole;
+
+  @HasMany(() => Greenhouse)
+  greenhouses!: Greenhouse[];
 }

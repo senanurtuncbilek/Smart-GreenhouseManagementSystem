@@ -5,7 +5,20 @@ import { UserRole } from '../constants/roles';
 
 config();
 
-export const authenticateToken = (req: Request, res: Response, next: NextFunction): void => {
+
+export interface AuthenticatedRequest extends Request {
+  user?: {
+    id: number;
+    role: UserRole;
+    [key: string]: any;
+  };
+}
+
+export const authenticateToken = (
+  req: AuthenticatedRequest,
+  res: Response,
+  next: NextFunction
+): void => {
   const authHeader = req.headers['authorization'];
   const token = authHeader && authHeader.split(' ')[1];
 
@@ -19,6 +32,7 @@ export const authenticateToken = (req: Request, res: Response, next: NextFunctio
       id: number;
       role: UserRole;
     };
+
     req.user = decoded;
     next();
   } catch (err) {

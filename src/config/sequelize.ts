@@ -1,6 +1,7 @@
 import { Sequelize } from 'sequelize-typescript';
 import { config } from 'dotenv';
 import User from '../models/User';
+import Greenhouse from '../models/Greenhouse';
 config();
 console.log('DB_PASS:', process.env.DB_PASS, '| Type:', typeof process.env.DB_PASS);
 
@@ -13,7 +14,7 @@ const sequelize = new Sequelize({
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  models: [User],
+  models: [User, Greenhouse],
   logging: false,
 });
 
