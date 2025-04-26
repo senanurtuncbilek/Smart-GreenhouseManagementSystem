@@ -5,6 +5,8 @@ import sequelize from './config/sequelize';
 import authRoute from './routes/auth.route';
 import protectedRoute from './routes/protected.route';
 import greenhouseRoute from './routes/greenhouse.route';
+import sensorRoute from './routes/sensor.route';
+
 
 
 
@@ -30,6 +32,7 @@ app.use('/api', infoRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/protected', protectedRoute);
 app.use('/api/greenhouse', greenhouseRoute);
+app.use('/api/sensor', sensorRoute);
 
 
 
