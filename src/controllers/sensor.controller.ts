@@ -2,6 +2,8 @@ import { Response } from 'express';
 import Sensor from '../models/Sensor';
 import { AuthenticatedRequest } from '../middlewares/auth.middleware';
 import { io } from '../index';
+import { checkAutomationRules } from '../services/automation.service';
+
 
 
 export const createSensor = async (req: AuthenticatedRequest, res: Response): Promise<void>  => {
@@ -26,6 +28,7 @@ export const createSensor = async (req: AuthenticatedRequest, res: Response): Pr
       status: 'active',
     });
 
+    await checkAutomationRules(sensor);
     
     io.emit('sensor-data', sensor.toJSON());
 
