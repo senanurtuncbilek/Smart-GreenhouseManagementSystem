@@ -4,24 +4,36 @@ import Greenhouse from './Greenhouse';
 @Table
 export default class Sensor extends Model {
   @Column({
-    type: DataType.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+    type: DataType.STRING,
+    allowNull: false,
   })
-  id!: number;
+  type!: 'temperature' | 'humidity' | 'soil' | 'light';
 
-  @Column(DataType.FLOAT)
-  temperature?: number;
+  @Column({
+    type: DataType.FLOAT,
+    allowNull: false,
+  })
+  value!: number;
 
-  @Column(DataType.FLOAT)
-  humidity?: number;
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  unit?: string;
 
-  @Column(DataType.FLOAT)
-  soilMoisture?: number;
+  @Column({
+    type: DataType.DATE,
+    defaultValue: DataType.NOW,
+  })
+  timestamp!: Date;
 
-  @Column(DataType.FLOAT)
-  light?: number;
+  @Column({
+    type: DataType.STRING,
+    defaultValue: 'active',
+  })
+  status!: 'active' | 'inactive' | 'error';
 
+  
   @ForeignKey(() => Greenhouse)
   @Column({
     type: DataType.INTEGER,
