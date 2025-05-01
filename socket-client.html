@@ -2,27 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Socket.IO Sensör Dinleyici</title>
+  <title>Smart Greenhouse - Anlık İzleme</title>
 </head>
 <body>
   <h1>Anlık Sensör Verileri</h1>
   <ul id="sensorDataList"></ul>
 
+  <h2>Otomasyon Uyarıları</h2>
+  <ul id="automationAlerts"></ul>
+
   <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
   <script>
-   
     const socket = io('http://localhost:3000');
 
     socket.on('connect', () => {
       console.log('Socket.IO bağlı:', socket.id);
     });
 
-
+    // Sensör verisi geldiğinde listele
     socket.on('sensor-data', (data) => {
       console.log('Yeni sensör verisi:', data);
       const list = document.getElementById('sensorDataList');
       const item = document.createElement('li');
-      item.textContent = `Greenhouse ${data.greenhouseId} | ${data.type}: ${data.value}${data.unit} (${data.timestamp})`;
+      item.textContent = `🌱 Greenhouse ${data.greenhouseId} | ${data.type}: ${data.value}${data.unit} (${new Date(data.timestamp).toLocaleString()})`;
+      list.prepend(item);
+    });
+
+    // Otomasyon kuralı tetiklendiğinde uyarı ver
+    socket.on('automation-alert', (data) => {
+      console.log('Otomasyon uyarısı:', data);
+      const list = document.getElementById('automationAlerts');
+      const item = document.createElement('li');
+      item.textContent = `⚠️ ${data.ruleName}: ${data.message} (${new Date(data.timestamp).toLocaleString()})`;
       list.prepend(item);
     });
 

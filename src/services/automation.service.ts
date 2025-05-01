@@ -1,4 +1,5 @@
 import AutomationRule from '../models/AutomationRule';
+import { io } from '../index';
 
 export const checkAutomationRules = async (sensor: any) => {
   const rules = await AutomationRule.findAll({
@@ -27,6 +28,13 @@ export const checkAutomationRules = async (sensor: any) => {
 
     if (isTriggered) {
       console.log(`⚠️ [AUTOMATION TRIGGERED] ${rule.name}: ${rule.action.message}`);
+      
+      io.emit('automation-alert', {
+        ruleName: rule.name,
+        message: rule.action.message,
+        timestamp: new Date(),
+        greenhouseId: sensor.greenhouseId
+      });
     }
   });
 };
