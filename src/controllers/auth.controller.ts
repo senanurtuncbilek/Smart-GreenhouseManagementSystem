@@ -31,18 +31,86 @@ const login = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const token = jwt.sign(
+    const accessToken = jwt.sign(
       { id: user.id, role: user.role },
       process.env.JWT_SECRET || 'defaultSecret',
-      { expiresIn: '1h' }
+      { expiresIn: '15m' }
     );
 
-    res.status(200).json({ message: 'Login successful', token });
+    const refreshToken = jwt.sign(
+      { id: user.id, role: user.role },
+      process.env.REFRESH_TOKEN_SECRET || 'refreshSecret',
+      { expiresIn: '7d' }
+    );
+
+    user.refreshToken = refreshToken;
+    await user.save();
+
+    res.status(200).json({
+      message: 'Login successful',
+      accessToken,
+      refreshToken,
+    });
   } catch (err: any) {
     res.status(500).json({ error: err.message });
   }
 };
 
+
+
+
+const refreshAccessToken = async (req: Request, res: Response): Promise<void> => {
+  const { refreshToken } = req.body;
+  if (!refreshToken) {
+    res.status(401).json({ error: 'Refresh token missing' });
+    return;
+  }
+
+  try {
+    const payload: any = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET!);
+
+    const user = await User.findByPk(payload.id);
+    if (!user || user.refreshToken !== refreshToken) {
+      res.status(403).json({ error: 'Invalid refresh token' });
+      return;
+    }
+
+    const newAccessToken = jwt.sign(
+      { id: user.id, role: user.role },
+      process.env.JWT_SECRET!,
+      { expiresIn: '15m' }
+    );
+
+    res.json({ accessToken: newAccessToken });
+  } catch (err) {
+    res.status(403).json({ error: 'Invalid or expired refresh token' });
+  }
+};
+
+
+const logout = async (req: Request, res: Response): Promise<void> => {
+  const { refreshToken } = req.body;
+  if (!refreshToken) {
+    res.status(400).json({ error: 'Refresh token missing' });
+    return;
+  }
+
+  try {
+    const payload: any = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET!);
+    const user = await User.findByPk(payload.id);
+
+    if (user) {
+      user.refreshToken = null;
+      await user.save();
+    }
+
+    res.status(200).json({ message: 'Logged out successfully' });
+  } catch (err) {
+    res.status(403).json({ error: 'Invalid or expired refresh token' });
+  }
+};
+
+
 console.log('authController çalışıyor: ', typeof register, typeof login);
 
-export default { register, login };
+export default { register, login, refreshAccessToken, logout };

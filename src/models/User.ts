@@ -31,4 +31,11 @@ export default class User extends Model {
 
   @HasMany(() => Greenhouse)
   greenhouses!: Greenhouse[];
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true,
+  })
+  refreshToken?: string | null;
+  
 }
