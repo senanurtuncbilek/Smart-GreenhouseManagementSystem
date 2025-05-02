@@ -1,5 +1,6 @@
 import { Table, Column, Model, DataType, ForeignKey, BelongsTo } from 'sequelize-typescript';
 import Greenhouse from './Greenhouse';
+import Zone from './Zone';
 
 @Table
 export default class Sensor extends Model {
@@ -40,6 +41,18 @@ export default class Sensor extends Model {
     allowNull: false,
   })
   greenhouseId!: number;
+
+
+  @ForeignKey(() => Zone)
+  @Column({
+    type: DataType.INTEGER,
+    allowNull: true,
+  })
+  zoneId?: number;
+  
+  @BelongsTo(() => Zone)
+  zone?: Zone;
+
 
   @BelongsTo(() => Greenhouse)
   greenhouse!: Greenhouse;
