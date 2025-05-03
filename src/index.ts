@@ -14,6 +14,7 @@ import sensorRoute from './routes/sensor.route';
 import sequelize from './config/sequelize';
 import automationRoute from './routes/automation.route';
 import zoneRoutes from './routes/zone.route';
+import cropHistoryRoute from './routes/cropHistory.route';
 
 const app = express();
 const httpServer = createServer(app); // express app'i http'e bağlıyoruz
@@ -45,6 +46,7 @@ app.use('/api/greenhouse', greenhouseRoute);
 app.use('/api/sensor', sensorRoute);
 app.use('/api/automation', automationRoute);
 app.use('/api/zone',zoneRoutes);
+app.use('/api/crophistory', cropHistoryRoute);
 
 
 io.on('connection', (socket) => {

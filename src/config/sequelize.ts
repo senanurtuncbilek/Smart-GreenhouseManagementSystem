@@ -5,6 +5,7 @@ import Greenhouse from '../models/Greenhouse';
 import Sensor from '../models/Sensor';
 import AutomationRule from '../models/AutomationRule';
 import Zone from '../models/Zone';
+import CropHistory from '../models/CropHistory';
 
 
 config();
@@ -19,7 +20,7 @@ const sequelize = new Sequelize({
   username: process.env.DB_USER,
   password: process.env.DB_PASS,
   database: process.env.DB_NAME,
-  models: [User, Greenhouse, Sensor, AutomationRule, Zone],
+  models: [User, Greenhouse, Sensor, AutomationRule, Zone, CropHistory],
   logging: false,
 });
 
