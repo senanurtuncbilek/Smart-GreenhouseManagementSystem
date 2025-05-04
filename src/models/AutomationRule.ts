@@ -17,16 +17,26 @@ export default class AutomationRule extends Model {
   name!: string;
 
   @Column(DataType.JSONB)
-  condition!: {
-    type: 'temperature' | 'humidity' | 'soil' | 'light',
-    operator: '>' | '<' | '=' | '>=' | '<=',
-    value: number
-  };
+  conditions!: {
+    sensor: 'temperature' | 'humidity' | 'soil' | 'light';
+    operator: '>' | '<' | '=' | '>=' | '<=';
+    value: number;
+  }[];
 
   @Column(DataType.JSONB)
-  action!: {
-    type: 'log' | 'warning' | 'irrigation',
-    message: string
+  actions!: {
+    device: 'ventilation' | 'waterSystem' | string;
+    action: 'START' | 'STOP';
+    duration?: number;
+  }[];
+
+  @Column(DataType.INTEGER)
+  priority!: number;
+
+  @Column(DataType.JSONB)
+  activeHours?: {
+    start: string; // "08:00"
+    end: string;   // "18:00"
   };
 
   @Column({
