@@ -5,7 +5,6 @@ import { UserRole } from '../constants/roles';
 
 config();
 
-
 export interface AuthenticatedRequest extends Request {
   user?: {
     id: number;

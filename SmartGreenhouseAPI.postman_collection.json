@@ -1,0 +1,672 @@
+{
+	"info": {
+		"_postman_id": "e7047ec0-aec9-4134-994b-3f69a6e1b13b",
+		"name": "SmartGreenhouseAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43329526",
+		"_collection_link": "https://lively-astronaut-571240.postman.co/workspace/Team-Workspace~6d59d494-e532-40a7-8772-fd9f6bdefa5b/collection/43329526-e7047ec0-aec9-4134-994b-3f69a6e1b13b?action=share&source=collection_link&creator=43329526"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"senanurtuncbilek@sera.com\",\r\n  \"password\": \"password123\",\r\n  \"role\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjA3NTgzLCJleHAiOjE3NDY2MDg0ODN9.yi5qbWXtrZIdMMEy5UEnWE8EzS0HAW4KYLaAJRBWdu0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"testuser@sera.com\",\r\n  \"password\": \"test1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjA2OTYyLCJleHAiOjE3NDcyMTE3NjJ9.dcjyrFY7aQUrqYnlpHnXJxv5y2BNzZ6evrVUUbHvLMA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/refresh",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createGreenhouse",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjA3NTgzLCJleHAiOjE3NDY2MDg0ODN9.yi5qbWXtrZIdMMEy5UEnWE8EzS0HAW4KYLaAJRBWdu0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Çilek Serası\",\r\n  \"location\": \"İstanbul\",\r\n  \"temperatureThreshold\": 30,\r\n  \"humidityThreshold\": 50,\r\n  \"autoIrrigationEnabled\": true\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/greenhouse/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"greenhouse",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listGreenhouse",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjA4NDM1LCJleHAiOjE3NDY2MDkzMzV9.SWhM1gFzUGjPY99Cq21gB_14Fj3YZqSH41nrUBzBtSc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/greenhouse/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"greenhouse",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "putGreenhouse",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjA4NDM1LCJleHAiOjE3NDY2MDkzMzV9.SWhM1gFzUGjPY99Cq21gB_14Fj3YZqSH41nrUBzBtSc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Domates Serası\",\r\n  \"location\": \"Ankara\",\r\n  \"temperatureThreshold\": 25,\r\n  \"humidityThreshold\": 60,\r\n  \"autoIrrigationEnabled\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/greenhouse/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"greenhouse",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteGreenhouse",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjA4NDM1LCJleHAiOjE3NDY2MDkzMzV9.SWhM1gFzUGjPY99Cq21gB_14Fj3YZqSH41nrUBzBtSc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/greenhouse/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"greenhouse",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createSensor",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjA5MTQ1LCJleHAiOjE3NDY2MTAwNDV9.2u9Em42jRzlNwo161O0oiGDFZYQqLdal0I_0ac-B0eY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"greenhouseId\": 6,\r\n  \"type\": \"temperature\",\r\n  \"unit\": \"Celsius\",\r\n  \"location\": \"Sol üst köşe\",\r\n  \"value\": 25.3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/sensor/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sensor",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listSensor",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjA5MTQ1LCJleHAiOjE3NDY2MTAwNDV9.2u9Em42jRzlNwo161O0oiGDFZYQqLdal0I_0ac-B0eY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/sensor/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sensor",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "redisSensor",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjA5MTQ1LCJleHAiOjE3NDY2MTAwNDV9.2u9Em42jRzlNwo161O0oiGDFZYQqLdal0I_0ac-B0eY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/sensor/last/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"sensor",
+						"last",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ruleCreate",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjA5MTQ1LCJleHAiOjE3NDY2MTAwNDV9.2u9Em42jRzlNwo161O0oiGDFZYQqLdal0I_0ac-B0eY",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"greenhouseId\": 6,\r\n  \"name\": \"Sıcaklık Artarsa Fan Aç\",\r\n  \"conditions\": [\r\n    {\r\n      \"sensorType\": \"temperature\",\r\n      \"operator\": \">\",\r\n      \"value\": 30\r\n    }\r\n  ],\r\n  \"actions\": [\r\n    {\r\n      \"device\": \"fan\",\r\n      \"action\": \"on\"\r\n    }\r\n  ],\r\n  \"priority\": 1,\r\n  \"activeHours\": {\r\n    \"start\": \"08:00\",\r\n    \"end\": \"20:00\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/automation/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"automation",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listRules",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjA5MTQ1LCJleHAiOjE3NDY2MTAwNDV9.2u9Em42jRzlNwo161O0oiGDFZYQqLdal0I_0ac-B0eY",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/automation/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"automation",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createCropHistory",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjEwMDY1LCJleHAiOjE3NDY2MTA5NjV9.LAy3aWW8orOyochfUneUWfwPiXKqT1zEQuqis4HaQLk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"greenhouseId\": 6,\r\n  \"cropName\": \"Domates\",\r\n  \"plantedAt\": \"2024-02-10\",\r\n  \"harvestedAt\": \"2024-05-01\",\r\n  \"yieldKg\": 120\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/crophistory/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"crophistory",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listCropHistory",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjEwMDY1LCJleHAiOjE3NDY2MTA5NjV9.LAy3aWW8orOyochfUneUWfwPiXKqT1zEQuqis4HaQLk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/crophistory/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"crophistory",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dateReportCropHistory",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjEwMDY1LCJleHAiOjE3NDY2MTA5NjV9.LAy3aWW8orOyochfUneUWfwPiXKqT1zEQuqis4HaQLk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/crophistory/report/6?start=2024-01-01&end=2024-12-31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"crophistory",
+						"report",
+						"6"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2024-01-01"
+						},
+						{
+							"key": "end",
+							"value": "2024-12-31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pdfReportHistory",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "excellReportHistory",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjEwMDY1LCJleHAiOjE3NDY2MTA5NjV9.LAy3aWW8orOyochfUneUWfwPiXKqT1zEQuqis4HaQLk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/crophistory/export/excel/6?start=2024-01-01&end=2024-12-31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"crophistory",
+						"export",
+						"excel",
+						"6"
+					],
+					"query": [
+						{
+							"key": "start",
+							"value": "2024-01-01"
+						},
+						{
+							"key": "end",
+							"value": "2024-12-31"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createZone",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjEwMDY1LCJleHAiOjE3NDY2MTA5NjV9.LAy3aWW8orOyochfUneUWfwPiXKqT1zEQuqis4HaQLk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"greenhouseId\": 6,\r\n  \"name\": \"Domates Alanı\",\r\n  \"description\": \"Sol üst köşedeki domates yetiştirilen bölge\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/zone/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"zone",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listZone",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NjEwMDY1LCJleHAiOjE3NDY2MTA5NjV9.LAy3aWW8orOyochfUneUWfwPiXKqT1zEQuqis4HaQLk",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/api/zone/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"zone",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQ2NTMxMDgxLCJleHAiOjE3NDY1MzE5ODF9.eCZPuafsSVyuPr8WIBLv_5xxfqQs9s9X6zfp2LQbxiI",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
